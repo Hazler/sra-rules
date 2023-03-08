@@ -1,0 +1,21 @@
+mat-toolbar {
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  /* Ensure that your app's content doesn't overlap the toolbar */
+  height: 40px;
+}
+
+.example-icon {
+  background-color: transparent;
+  border: none;
+  color: white;
+}
+
+.title {
+  flex: 1 1 auto;
+}
+
+::ng-deep .mat-mdc-checkbox .mdc-form-field, .mdc-checkbox {
+  color: white !important;
+}

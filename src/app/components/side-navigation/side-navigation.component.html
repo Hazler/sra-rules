@@ -1,0 +1,49 @@
+<mat-checkbox color="white" (change)="this.onHighlightChanged($event)">Korosta muutokset / lisäykset</mat-checkbox>
+
+<ng-container *ngFor="let section of this.data.content">
+  <mat-card *ngIf="section.id">
+    <mat-card-header (click)="this.openClose(section)">
+      <mat-card-title>
+        <a *ngIf="!this.opened[section.id].isExpandable" href="#{{section.id}}" (click)="this.navItemClicked.emit()">
+          {{section.id}} {{section.header}}
+        </a>
+        <div *ngIf="this.opened[section.id].isExpandable">
+          <span>{{section.id}} {{section.header}}</span>
+          <mat-icon *ngIf="!this.opened[section.id].isOpen">expand_more</mat-icon>
+          <mat-icon *ngIf="this.opened[section.id].isOpen">expand_less</mat-icon>
+        </div>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content *ngIf="this.opened[section.id].isOpen">
+      <mat-nav-list *ngIf="section.children">
+        <ng-container *ngFor="let child of section.children">
+          <a *ngIf="child.header" href="#{{child.id}}" mat-list-item
+            (click)="this.navItemClicked.emit();this.openClose(section)">{{child.id}} {{child.header}}</a>
+        </ng-container>
+      </mat-nav-list>
+    </mat-card-content>
+  </mat-card>
+</ng-container>
+
+<ng-container>
+  <mat-expansion-panel #komennot>
+    <mat-expansion-panel-header>KOMENNOT</mat-expansion-panel-header>
+    <mat-nav-list>
+      <a href="#{{command.href}}" mat-list-item *ngFor="let command of this.getCommands()"
+        (click)="this.navItemClicked.emit();komennot.close()">
+        {{command.header}}
+        <p class="command-subheader" *ngIf="command.subheader">{{command.subheader}}</p>
+      </a>
+    </mat-nav-list>
+  </mat-expansion-panel>
+</ng-container>
+
+<ng-container>
+  <mat-expansion-panel #liitteet>
+    <mat-expansion-panel-header>LIITTEET</mat-expansion-panel-header>
+    <mat-nav-list>
+      <a href="#{{attachment.id}}" mat-list-item *ngFor="let attachment of this.data.attachments"
+        (click)="this.navItemClicked.emit();liitteet.close();">{{attachment.header}}</a>
+    </mat-nav-list>
+  </mat-expansion-panel>
+</ng-container>

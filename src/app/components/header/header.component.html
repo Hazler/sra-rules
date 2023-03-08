@@ -1,0 +1,10 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button class="example-icon">
+    <mat-icon (click)="this.menuClicked.emit()">menu</mat-icon>
+  </button>
+  <span class="title">{{this.rules.title}}</span>
+
+  <button mat-icon-button class="example-icon">
+    <mat-icon (click)="this.openSearch()">search</mat-icon>
+  </button>
+</mat-toolbar>

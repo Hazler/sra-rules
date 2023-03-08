@@ -1,0 +1,5 @@
+<div class="content" *mcRerender="this.highlightChanges">
+  <app-section *ngFor="let section of this.data.content" [section]="section"></app-section>
+  <p><i>{{this.data.lastWords}}</i></p>
+  <app-attachments [categories]="this.data.categories" [attachments]="this.data.attachments"></app-attachments>
+</div>

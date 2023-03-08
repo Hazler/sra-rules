@@ -1,0 +1,54 @@
+<div>
+  <ng-container [ngSwitch]="this.getSectionDepth()">
+    <h2 [id]="this.section.id" *ngSwitchCase="0"><a href="#{{this.section.id}}"
+        [innerHTML]="this.section.id + ' ' + this.section.header | highlightNew:this.section | sanitizeHtml"></a>
+    </h2>
+    <h3 [id]="this.section.id" *ngSwitchCase="1"><a href="#{{this.section.id}}"
+        [innerHTML]="this.section.id + ' ' + this.section.header | highlightNew:this.section | sanitizeHtml"></a>
+    </h3>
+    <p [id]="this.section.id" *ngSwitchCase="2" class="child-container">
+      <a href="#{{this.section.id}}"
+        [innerHTML]="this.section.id + '&nbsp;' | highlightNew:this.section | sanitizeHtml"></a>
+      <span [innerHTML]="this.section.content | highlightNew:this.section | refs:this.section | sanitizeHtml"></span>
+    </p>
+    <ng-container *ngSwitchDefault>
+      <div [id]="this.section.href" class="child-container">
+        <p *ngIf="!this.section.header;else HEADER" [innerHtml]="this.section.content | highlightNew:this.section |
+          refs:this.section | sanitizeHtml"></p>
+        <ng-template #HEADER>
+          <h4><a href="#{{this.section.href}}">{{this.section.header}} {{this.section.subheader ?? ''}}</a></h4>
+          <p [innerHTML]="this.section.content | highlightNew:this.section | refs:this.section | sanitizeHtml"></p>
+        </ng-template>
+      </div>
+    </ng-container>
+  </ng-container>
+  <ng-container *ngIf="this.section.img">
+    <div class="img-container">
+      <img [src]="this.section.img" [alt]="this.section.imgAlt" />
+    </div>
+  </ng-container>
+  <ng-container *ngIf="!!this.section.lists && this.section.lists.length > 0">
+    <ng-container *ngFor="let list of this.section.lists;let i = index">
+      <div class="child-container">
+        <p [innerHTML]="list.content | highlightNew:list | sanitizeHtml"></p>
+        <ng-container *ngIf="!!list.listType;else DEFAULTLIST">
+          <ol [type]="list.listType" [start]="this.getStartValue(i)">
+            <li *ngFor="let item of list.list">
+              <p [innerHTML]="item.content | highlightNew:item | refs:item | sanitizeHtml"></p>
+            </li>
+          </ol>
+        </ng-container>
+        <ng-template #DEFAULTLIST>
+          <ul>
+            <li *ngFor="let item of list.list">
+              <p [innerHTML]="item.content | highlightNew:item | refs:item | sanitizeHtml"></p>
+            </li>
+          </ul>
+        </ng-template>
+      </div>
+    </ng-container>
+  </ng-container>
+  <ng-container *ngIf="!!this.section.children && this.section.children.length > 0">
+    <app-section *ngFor="let item of this.section.children" [section]="item"></app-section>
+  </ng-container>
+</div>

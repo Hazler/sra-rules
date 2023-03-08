@@ -1,0 +1,13 @@
+<ng-container>
+  <app-header (menuClicked)="menu.toggle()"></app-header>
+  <mat-sidenav-container>
+    <mat-sidenav #menu autosize>
+      <mat-nav-list>
+        <app-side-navigation (navItemClicked)="menu.close()"></app-side-navigation>    
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</ng-container>

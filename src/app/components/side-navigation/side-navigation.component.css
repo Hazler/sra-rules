@@ -1,0 +1,37 @@
+mat-card {
+  margin: 1em;
+}
+
+mat-card-header {  
+  align-items: center;
+}
+
+mat-card-title {
+  padding-top: 0px !important;
+  cursor: pointer;
+}
+
+mat-card-title>a {
+  color: black;
+  opacity: 0.87;
+  text-decoration: none;
+}
+
+mat-nav-list>a {
+  width: 400px;
+  max-width: 100% !important;
+  word-wrap: break-word;
+}
+
+mat-expansion-panel {
+  margin: 1em;
+}
+
+.command-subheader {
+  margin: 0;
+  font-size: 12px;
+}
+
+::ng-deep .mat-mdc-checkbox .mdc-form-field, .mdc-checkbox {
+  color: black !important;
+}

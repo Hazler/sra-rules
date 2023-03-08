@@ -1,0 +1,33 @@
+.child-container {
+  margin-left: 30px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+a {
+  cursor: pointer;
+}
+
+h2>a,
+h3>a,
+h4>a,
+.child-container>a {
+  text-decoration: none;
+  color: black;
+}
+
+h4 {
+  font-weight: bold;
+}
+
+.img-container {
+  margin: auto;
+}
+
+img {
+  margin-left: 1em;
+  width: 90vw;
+  max-width: 1000px;
+}
