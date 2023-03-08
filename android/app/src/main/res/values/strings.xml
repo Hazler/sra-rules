@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">SRA säännöt</string>
+    <string name="title_activity_main">SRA säännöt</string>
+    <string name="package_name">fi.luukas.sra</string>
+    <string name="custom_url_scheme">fi.luukas.sra</string>
+</resources>
