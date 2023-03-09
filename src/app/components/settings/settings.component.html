@@ -1,9 +1,21 @@
-<div>
-  <mat-checkbox color="white" (change)="this.onHighlightChanged($event)">Korosta muutokset / lisäykset</mat-checkbox>
-
-  <div class="font-size">
-    <mat-icon (click)="this.decreaseFontSize()">text_decrease</mat-icon>
-    <span>{{this.fontSize}}</span>
-    <mat-icon (click)="this.increaseFontSize()">text_increase</mat-icon>
-  </div>
+<div class="content">
+  <h2>Asetukset</h2>
+  <table>
+    <tr>
+      <td>Korosta muutokset / lisäykset</td>
+      <td>
+        <mat-checkbox color="white" [checked]="this.highlightChanged" (change)="this.onHighlightChanged($event)"
+          labelPosition="before">
+        </mat-checkbox>
+      </td>
+    </tr>
+    <tr>
+      <td>Tekstin koko</td>
+      <td>
+        <mat-icon (click)="this.decreaseFontSize()">text_decrease</mat-icon>
+        <span class="font-value">{{this.fontSize}}</span>
+        <mat-icon (click)="this.increaseFontSize()">text_increase</mat-icon>
+      </td>
+    </tr>
+  </table>
 </div>

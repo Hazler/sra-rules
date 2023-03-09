@@ -24,6 +24,7 @@
     "@capacitor/cli": "^4.7.0",
     "@capacitor/core": "^4.7.0",
     "@capacitor/ios": "^4.7.0",
+    "ngx-cookie-service": "^15.0.0",
     "ngx-rerender": "^1.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

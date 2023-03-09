@@ -17,11 +17,17 @@ export class SettingsComponent {
   public fontSize: number = 14;
 
   /**
+   * Highlight changes setting
+   */
+  public highlightChanged: boolean = false;
+
+  /**
    * Creates a new instance
    * @param rulesService The rules service
    */
   constructor(private settingsService: SettingsService) {
     settingsService.fontSize$.subscribe(f => this.fontSize = f);
+    settingsService.highlightChanges$.subscribe(h => this.highlightChanged = h);
   }
 
   /**

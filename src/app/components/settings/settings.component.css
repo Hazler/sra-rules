@@ -1,8 +1,14 @@
-:host() {
+.content {
   margin: 1em;
 }
 
 .font-size {
   margin: auto;
   text-align: center;
+}
+
+.font-value {
+  font-size: large;
+  margin-left: 1em;
+  margin-right: 1em;
 }
