@@ -29,6 +29,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { HighlightPipe } from './pipes/highlight.pipe';
 import { MatTabsModule } from '@angular/material/tabs';
 import { LimitPipe } from './pipes/limit.pipe';
+import { SettingsComponent } from './components/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { LimitPipe } from './pipes/limit.pipe';
     SanitizeHtmlPipe,
     SearchComponent,
     HighlightPipe,
-    LimitPipe
+    LimitPipe,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,

@@ -17,7 +17,7 @@ export class HeaderComponent {
   /**
    * The rules
    */
-  rules: Rules;
+  rules: Rules | any;
 
   /**
    * Occurs when the menu icon is clicked
@@ -25,20 +25,17 @@ export class HeaderComponent {
   @Output() menuClicked = new EventEmitter();
 
   /**
+   * Occurs when the settings icon is clicked
+   */
+  @Output() settingsClicked = new EventEmitter();
+
+  /**
    * Creates a new instance
    * @param rulesService The rules service
    * @param dialog Dialog for the search
    */
-  constructor(private rulesService: RulesService, private dialog: MatDialog) {
-    this.rules = this.rulesService.data;
-  }
-
-  /**
-   * Changes the value for highlighting the changes
-   * @param event Checkbox event
-   */
-  onHighlightChanged(event: any) {
-    this.rulesService.changeHighlight(event.checked);
+  constructor(rulesService: RulesService, private dialog: MatDialog) {
+    rulesService.data$.subscribe(d => this.rules = d);
   }
 
   /**

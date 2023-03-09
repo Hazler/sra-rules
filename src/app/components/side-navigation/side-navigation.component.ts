@@ -18,7 +18,7 @@ export class SideNavigationComponent {
   /**
    * Data for the navigation
    */
-  data: Rules;
+  data: Rules | any;
 
   /**
    * Cache for storing the open/close states of the expandable sections
@@ -29,8 +29,8 @@ export class SideNavigationComponent {
    * Creates a new instance
    * @param rulesService The rules service
    */
-  constructor(private rulesService: RulesService) {
-    this.data = rulesService.data;
+  constructor(rulesService: RulesService) {
+    rulesService.data$.subscribe(d => this.data = d);
     this.data.content.map((s: Section) => {
       if (s.id)
         this.opened[s.id] = { isOpen: false, isExpandable: s.children.some(c => c.header) };
@@ -43,8 +43,8 @@ export class SideNavigationComponent {
    */
   getCommands() {
     let four = this.data.content.find((c: Section) => c.id == "4");
-    let fourTwo = four?.children.find(c => c.id == "4.2");
-    return fourTwo?.children.find(c => c.id = "4.2.1")?.children;
+    let fourTwo = four?.children.find((c: Section) => c.id == "4.2");
+    return fourTwo?.children.find((c: Section) => c.id = "4.2.1")?.children;
   }
 
   /**
@@ -54,13 +54,5 @@ export class SideNavigationComponent {
   openClose(section: Section) {
     if (section.id)
       this.opened[section.id].isOpen = !this.opened[section.id].isOpen;
-  }
-
-  /**
-   * Changes the value for highlighting the changes
-   * @param event Checkbox event
-   */
-  onHighlightChanged(event: any) {
-    this.rulesService.changeHighlight(event.checked);
   }
 }

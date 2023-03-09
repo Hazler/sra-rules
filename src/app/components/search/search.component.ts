@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Rules } from 'src/app/model/rules';
 import { SearchResult } from 'src/app/model/search-result';
 import { Section } from 'src/app/model/section';
 import { RulesService } from 'src/app/services/rules.service';
@@ -24,10 +25,16 @@ export class SearchComponent {
   searchText: string = '';
 
   /**
+   * The rules to search through
+   */
+  private rules: Rules | any;
+
+  /**
    * Creates a new instance
    * @param rulesService The rules service
    */
-  constructor(private rulesService: RulesService) {
+  constructor(rulesService: RulesService) {
+    rulesService.data$.subscribe(d => this.rules = d);
   }
 
   /**
@@ -42,7 +49,7 @@ export class SearchComponent {
     if (str.length > 2) {
       this.searchResults = [];
       this.searchText = str;
-      let sections: Section[] = this.rulesService.data.content;
+      let sections: Section[] = this.rules.content;
       sections.forEach(s => this.searchSection(s, str.toLowerCase()));
     }
   }

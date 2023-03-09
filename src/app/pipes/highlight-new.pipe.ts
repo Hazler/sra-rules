@@ -3,7 +3,7 @@ import { Attachment } from '../model/attachment';
 import { SectionList } from '../model/list';
 import { NewParts } from '../model/new-parts';
 import { Section } from '../model/section';
-import { RulesService } from '../services/rules.service';
+import { SettingsService } from '../services/settings.service';
 
 /**
  * Transforms text to contain <span></span> element with a different background color.
@@ -15,9 +15,9 @@ export class HighlightNewPipe implements PipeTransform {
 
   /**
    * Creates a new instance
-   * @param rulesService The rules service
+   * @param settingsService The settings service
    */
-  constructor(private rulesService: RulesService) {
+  constructor(private settingsService: SettingsService) {
   }
 
   /**
@@ -28,7 +28,7 @@ export class HighlightNewPipe implements PipeTransform {
    */
   transform(value: string, newParts: NewParts): string {
     let result = value;
-    if (this.rulesService.getHighlightValue() && newParts.newParts?.length) {
+    if (this.settingsService.getHighlightValue() && newParts.newParts?.length) {
       newParts.newParts.forEach(p => {
         if (p == "*") {
           this.setNewRecursively(newParts, ["*"]);

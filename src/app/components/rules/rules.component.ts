@@ -1,10 +1,11 @@
-import { AfterContentChecked, Component } from '@angular/core';
+import { AfterContentChecked, Component, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Rules } from 'src/app/model/rules';
+import { SettingsService } from 'src/app/services/settings.service';
 import { RulesService } from '../../services/rules.service';
 
 /**
- * 
+ * Displays the rules
  */
 @Component({
   selector: 'app-rules',
@@ -16,7 +17,7 @@ export class RulesComponent implements AfterContentChecked {
   /**
    * Rules for this component
    */
-  data: Rules;
+  data: Rules | any;
 
   /**
    * Indicates whether to highlight the changes to the rules or not
@@ -31,11 +32,12 @@ export class RulesComponent implements AfterContentChecked {
   /**
    * Creates a new instance
    * @param rulesService The rules service
+   * @param settingsService The settings service
    * @param activatedRoute Activated route
    */
-  constructor(rulesService: RulesService, activatedRoute: ActivatedRoute) {
-    this.data = rulesService.data;
-    rulesService.highlightChanges$.subscribe(highlight => { this.highlightChanges = highlight; });
+  constructor(rulesService: RulesService, settingsService: SettingsService, activatedRoute: ActivatedRoute) {
+    rulesService.data$.subscribe(d => this.data = d);
+    settingsService.highlightChanges$.subscribe(highlight => { this.highlightChanges = highlight; });
     activatedRoute.url.subscribe(url => {
       let route = url.at(0);
       if (route) {

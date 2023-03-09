@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input } from '@angular/core';
+import { SettingsService } from 'src/app/services/settings.service';
 import { Section } from '../../model/section';
 
 /**
@@ -15,6 +16,17 @@ export class SectionComponent {
    * The section to display
    */
   @Input() section!: Section;
+
+  /**
+   * Creates a new instance
+   * @param settingsService Settings service
+   * @param elRef Component element reference
+   */
+  constructor(settingsService: SettingsService, elRef: ElementRef) {
+    settingsService.fontSize$.subscribe(f => {
+      elRef.nativeElement.style.setProperty('--rules-font-size', `${f}px`);
+    });
+  }
 
   /**
    * Gets the section depth

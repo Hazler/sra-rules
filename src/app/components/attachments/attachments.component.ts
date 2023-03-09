@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input } from '@angular/core';
 import { Attachment } from 'src/app/model/attachment';
 import { Category } from 'src/app/model/category';
+import { SettingsService } from 'src/app/services/settings.service';
 import { WindowService } from '../../services/window.service';
 
 /**
@@ -27,6 +28,9 @@ export class AttachmentsComponent {
    * Creates a new instance
    * @param windowService Window service
    */
-  constructor(public windowService: WindowService) {
+  constructor(public windowService: WindowService, settingsService: SettingsService, elRef: ElementRef) {
+    settingsService.fontSize$.subscribe(f => {
+      elRef.nativeElement.style.setProperty('--rules-font-size', `${f}px`);
+    });
   }
 }

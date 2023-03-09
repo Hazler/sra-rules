@@ -98,7 +98,7 @@
     </ng-template>
 
     <ng-container *ngFor="let superscript of attachment.superscripts">
-      <p>
+      <p class="superscript">
         <sup [innerHTML]="superscript.id | highlightNew:superscript | sanitizeHtml"></sup>
         <span [innerHTML]="superscript.content | highlightNew:superscript | sanitizeHtml"></span>
       </p>

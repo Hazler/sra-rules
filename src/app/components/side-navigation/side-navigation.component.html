@@ -1,5 +1,3 @@
-<mat-checkbox color="white" (change)="this.onHighlightChanged($event)">Korosta muutokset / lisäykset</mat-checkbox>
-
 <ng-container *ngFor="let section of this.data.content">
   <mat-card *ngIf="section.id">
     <mat-card-header (click)="this.openClose(section)">

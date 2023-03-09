@@ -18,8 +18,17 @@ h4>a,
   color: black;
 }
 
+h2 {
+  font-size: calc(var(--rules-font-size) + 6px);
+}
+
+h3 {
+  font-size: calc(var(--rules-font-size) + 4px);
+}
+
 h4 {
   font-weight: bold;
+  font-size: var(--rules-font-size);
 }
 
 .img-container {
@@ -30,4 +39,8 @@ img {
   margin-left: 1em;
   width: 90vw;
   max-width: 1000px;
+}
+
+*>p, *>li, *>td {
+  font-size: var(--rules-font-size);
 }

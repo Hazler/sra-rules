@@ -2,8 +2,10 @@ table {
   border-collapse: collapse;
 }
 
-td, th.category {
+td,
+th.category {
   border: 1px solid black;
+  font-size: var(--rules-font-size);
 }
 
 h2 {
@@ -19,14 +21,20 @@ h3>a {
 td.category {
   width: 200px;
 }
+
 td.id {
   width: 50px;
   text-align: center;
 }
+
 td.content {
   width: 350px;
 }
 
 mat-list-item {
   margin: 0;
+}
+
+p.superscript {  
+  font-size: var(--rules-font-size);
 }
