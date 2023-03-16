@@ -286,7 +286,7 @@ export const SRArules80 = {
                                 "id": "3.3.18", "content": "Vahingonlaukaukseksi katsotaan", "lists": [
                                     {
                                         "listType": "a", "list": [
-                                            { "content": "laukaus, joka ammutaan ennen aloitusmerkkiä tai ampumisen lopettavan ”liikkuvat taakse” -komennon jälkeen,", "refs": [{ "id": "liikkuvattaakse", "content": "”liikkuvat taakse”" }] },
+                                            { "content": "laukaus, joka ammutaan ennen aloitusmerkkiä tai ampumisen lopettavan ”liikkuvat taakse” -komennon jälkeen,", "refs": [{ "id": "lipasirti", "content": "”liikkuvat taakse”" }] },
                                             { "content": "laukaus, joka ammutaan ohi ampumasektorin,", "refs": [{ "id": "3.4.5", "content": "ampumasektorin" }] },
                                             { "content": "laukaus, joka osuu maahan lähempänä kuin 3 metriä ampujasta, ellei tehtävä sitä edellytä, sekä" },
                                             { "content": "mikä tahansa laukaus, jota selvästi ei ollut tarkoitus ampua." }
