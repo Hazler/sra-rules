@@ -24,9 +24,10 @@ export class HighlightNewPipe implements PipeTransform {
    * Transforms given text to contain elements with different background color
    * @param value The text value to transform
    * @param newParts The new parts to highlight
+   * @param className Name of the class to set for the <span> element
    * @returns Transformed text
    */
-  transform(value: string, newParts: NewParts): string {
+  transform(value: string, newParts: NewParts, className: string = "highlight-new"): string {
     let result = value;
     if (this.settingsService.getHighlightValue() && newParts.newParts?.length) {
       newParts.newParts.forEach(p => {
@@ -34,10 +35,10 @@ export class HighlightNewPipe implements PipeTransform {
           this.setNewRecursively(newParts, ["*"]);
 
           if (result)
-            result = `<span style="background-color: lightgreen;">${result}</span>`;
+            result = `<span class="${className}">${result}</span>`;
         }
         else if (result)
-          result = result.replace(p, `<span style="background-color: lightgreen;">${p}</span>`);
+          result = result.replace(p, `<span class="${className}">${p}</span>`);
       });
     }
 

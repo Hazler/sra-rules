@@ -1,11 +1,10 @@
-
 mat-sidenav-container {
-  width: auto;
-  position: absolute;
-  top: 40px;
-  /* toolbar height */
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #eee;
-}
+    width: auto;
+    position: absolute;
+    top: 56px;
+    /* toolbar height */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: calc(100vh - 56px);
+  }

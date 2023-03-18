@@ -12,7 +12,6 @@ mat-card-title {
 }
 
 mat-card-title>a {
-  color: black;
   opacity: 0.87;
   text-decoration: none;
 }
@@ -32,6 +31,8 @@ mat-expansion-panel {
   font-size: 12px;
 }
 
+/*
 ::ng-deep .mat-mdc-checkbox .mdc-form-field, .mdc-checkbox {
   color: black !important;
 }
+*/

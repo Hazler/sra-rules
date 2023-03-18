@@ -5,20 +5,17 @@
   overflow-y: auto;
 }
 
-mat-card-title {
-  font-size: 14px;
+mat-card-title,
+mat-card-subtitle {
+  font-size: var(--rules-font-size) !important;
+  line-height: calc(var(--rules-font-size) + 6px) !important;
 }
 
 mat-card-title>a {
-  color: black;
   text-decoration: none;
 }
 
 mat-card,
 mat-form-field {
   margin: 1em;
-}
-
-.searchresults {
-  overflow-y: auto;
 }

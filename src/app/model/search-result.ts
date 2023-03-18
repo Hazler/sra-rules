@@ -14,6 +14,11 @@ export interface SearchResult {
   content: string;
 
   /**
+   * The matching text for the search
+   */
+  match: string;
+
+  /**
    * The path to the search result
    */
   path: { id: string | undefined, href: string | undefined, content: string } | undefined;

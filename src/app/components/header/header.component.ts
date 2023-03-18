@@ -1,7 +1,9 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Rules } from 'src/app/model/rules';
+import { SearchStatus } from 'src/app/model/search-status';
 import { RulesService } from 'src/app/services/rules.service';
+import { SearchService } from 'src/app/services/search.service';
 import { SearchComponent } from '../search/search.component';
 
 /**
@@ -30,12 +32,20 @@ export class HeaderComponent {
   @Output() settingsClicked = new EventEmitter();
 
   /**
+   * Indicates whether there is an active search to highlight
+   */
+  hasActiveSearch: boolean;
+
+  /**
    * Creates a new instance
    * @param rulesService The rules service
    * @param dialog Dialog for the search
    */
-  constructor(rulesService: RulesService, private dialog: MatDialog) {
+  constructor(rulesService: RulesService, private dialog: MatDialog, searchService: SearchService) {
+    this.hasActiveSearch = searchService.getStatus() == SearchStatus.Complete;
+
     rulesService.data$.subscribe(d => this.rules = d);
+    searchService.status$.subscribe(s => this.hasActiveSearch = s == SearchStatus.Complete);
   }
 
   /**

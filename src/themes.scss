@@ -1,0 +1,192 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$md-dark: (
+  50 : #e5e5e5,
+  100 : #bebebe,
+  200 : #939393,
+  300 : #686868,
+  400 : #474747,
+  500 : #272727,
+  600 : #232323,
+  700 : #1d1d1d,
+  800 : #171717,
+  900 : #0e0e0e,
+  A100 : #eb6969,
+  A200 : #e53c3c,
+  A400 : #ee0000,
+  A700 : #d40000,
+  contrast: (50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+$md-light: (
+  50 : #fcfcfc,
+  100 : #f8f8f8,
+  200 : #f3f3f3,
+  300 : #eeeeee,
+  400 : #ebebeb,
+  500 : #e7e7e7,
+  600 : #e4e4e4,
+  700 : #e0e0e0,
+  800 : #dddddd,
+  900 : #d7d7d7,
+  A100 : #ffffff,
+  A200 : #ffffff,
+  A400 : #ffffff,
+  A700 : #ffffff,
+  contrast: (50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #000000,
+    700 : #000000,
+    800 : #000000,
+    900 : #000000,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$md-green: (
+  50 : #e0ebe1,
+  100 : #b3ceb3,
+  200 : #80ad81,
+  300 : #4d8c4f,
+  400 : #267329,
+  500 : #005a03,
+  600 : #005203,
+  700 : #004802,
+  800 : #003f02,
+  900 : #002e01,
+  A100 : #67ff67,
+  A200 : #34ff34,
+  A400 : #01ff01,
+  A700 : #00e600,
+  contrast: (50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$md-red: (
+  50 : #f9e0e0,
+  100 : #f0b3b3,
+  200 : #e68080,
+  300 : #db4d4d,
+  400 : #d42626,
+  500 : #cc0000,
+  600 : #c70000,
+  700 : #c00000,
+  800 : #b90000,
+  900 : #ad0000,
+  A100 : #ffd7d7,
+  A200 : #ffa4a4,
+  A400 : #ff7171,
+  A700 : #ff5858,
+  contrast: (50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$md-blue: (
+  50 : #e8eaf6,
+  100 : #c5cbe9,
+  200 : #9fa8da,
+  300 : #7885cb,
+  400 : #5b6bc0,
+  500 : #3e51b5,
+  600 : #384aae,
+  700 : #3040a5,
+  800 : #28379d,
+  900 : #1b278d,
+  A100 : #c6cbff,
+  A200 : #939dff,
+  A400 : #606eff,
+  A700 : #4757ff,
+  contrast: (50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+// Define a dark theme
+$dark-theme: mat.define-dark-theme((color: (primary: mat.define-palette($md-dark),
+        accent: mat.define-palette($md-green),
+        warn: mat.define-palette($md-red)),
+      // Only include `typography` and `density` in the default dark theme.
+      typography: mat.define-typography-config(),
+      density: 0,
+    ));
+
+// Define a light theme
+$light-theme: mat.define-light-theme((color: (primary: mat.define-palette($md-light),
+        accent: mat.define-palette($md-blue),
+        warn: mat.define-palette($md-red)),
+      typography: mat.define-typography-config(),
+      density: 0,
+    ));
+
+// Apply the dark theme by default
+@include mat.core-theme($dark-theme);
+@include mat.button-theme($dark-theme);
+
+// Apply the light theme only when the user prefers light themes.
+@media (prefers-color-scheme: light) {
+  // Use the `-color` mixins to only apply color styles without reapplying the same
+  // typography and density styles.
+  @include mat.core-color($light-theme);
+  @include mat.button-color($light-theme);
+}

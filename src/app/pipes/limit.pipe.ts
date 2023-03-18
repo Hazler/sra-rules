@@ -15,7 +15,7 @@ export class LimitPipe implements PipeTransform {
    * @returns Transformed text
    */
   transform(text: string, type: string, length: number, value: string | undefined = undefined): string {
-    if (length > 0 && text.length > length)
+    if (length > 0 && text && text.length > length)
       if (type == 'start') {
         return `${text.substring(0, text.indexOf(' ', length))}...`;
       } else if (type == 'around' && value) {

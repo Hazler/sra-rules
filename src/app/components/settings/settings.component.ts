@@ -14,7 +14,7 @@ export class SettingsComponent {
   /**
    * Application base font size
    */
-  public fontSize: number = 14;
+  public fontSize: number = SettingsService.DefaultFontSize;
 
   /**
    * Highlight changes setting
@@ -22,12 +22,25 @@ export class SettingsComponent {
   public highlightChanged: boolean = false;
 
   /**
+   * Application theme
+   */
+  public theme: string;
+
+  /**
+   * Available application themes
+   */
+  public themes = SettingsService.AvailableThemes;
+
+  /**
    * Creates a new instance
    * @param rulesService The rules service
    */
   constructor(private settingsService: SettingsService) {
+    this.theme = settingsService.getTheme();
+
     settingsService.fontSize$.subscribe(f => this.fontSize = f);
     settingsService.highlightChanges$.subscribe(h => this.highlightChanged = h);
+    settingsService.theme$.subscribe(t => this.theme = t);
   }
 
   /**
@@ -36,6 +49,14 @@ export class SettingsComponent {
    */
   onHighlightChanged(event: any) {
     this.settingsService.changeHighlight(event.checked);
+  }
+
+  /**
+   * Sets the application theme
+   * @param theme Theme to set for the application
+   */
+  setTheme(theme: string) {
+    this.settingsService.changeTheme(theme);
   }
 
   /**

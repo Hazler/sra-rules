@@ -1,0 +1,68 @@
+@use '@angular/material' as mat;
+@import '@angular/material/theming';
+
+/* You can add global styles to this file, and also import other style files */
+
+// import our custom theme
+@import 'themes.scss';
+
+.dark {
+  @include mat.all-component-themes($dark-theme);
+
+  a {
+    color: mat-contrast($md-dark, 500);
+  }
+
+  .highlight-search {
+    background-color: mat-color($md-green, 500);
+  }
+
+  .highlight-new {
+    background-color: mat-color($md-green, 300);
+  }
+
+  td.id,
+  td.content,
+  td.category,
+  th.category {
+    border: 1px solid mat-contrast($md-dark, 500);
+  }
+}
+
+.light {
+  @include mat.all-component-themes($light-theme);
+
+  a {
+    color: mat-contrast($md-light, 500);
+  }
+
+  .highlight-search {
+    background-color: mat-color($md-green, 100);
+  }
+
+  .highlight-new {
+    background-color: mat-color($md-green, 50);
+  }
+
+  td.id,
+  td.content,
+  td.category,
+  th.category {
+    border: 1px solid mat-contrast($md-light, 500);
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+h2,
+h3 {
+  font-weight: 500;
+}

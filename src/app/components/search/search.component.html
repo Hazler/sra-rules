@@ -1,18 +1,25 @@
 <div class="content">
   <mat-form-field appearance="fill">
     <mat-label>Hae...</mat-label>
-    <input type="text" matInput (input)="this.onTextChanged($event.target)" (keyup.enter)="search.blur()" #search>
-    <mat-hint *ngIf="this.searchResults">Löydetty {{this.searchResults.length}} hakutulosta.</mat-hint>
+    <input type="text" matInput [value]="this.searchText" (input)="this.onTextChanged($event.target)"
+      (keyup.enter)="search.blur()" #search>
+    <mat-hint [ngSwitch]="this.status">
+      <ng-container *ngSwitchCase="SearchStatus.WaitingForInput">Kirjoita vähintään 3 merkkiä hakeaksesi.</ng-container>
+      <ng-container *ngSwitchCase="SearchStatus.Searching">Hakee...</ng-container>
+      <ng-container *ngSwitchCase="SearchStatus.Complete">Löydetty {{this.searchResults.length}}
+        hakutulosta.</ng-container>
+    </mat-hint>
   </mat-form-field>
+  <mat-icon *ngIf="this.searchText.length > 0" (click)="this.clearSearch()">clear</mat-icon>
 
   <div class="searchresults">
     <ng-container *ngFor="let searchResult of this.searchResults">
-      <mat-card>
+      <mat-card color="primary" class="search-card">
         <mat-card-header>
           <mat-card-title><a href="#{{searchResult.path?.id ?? searchResult.path?.href}}"
-              [innerHTML]="searchResult.content | limit:'around':150:this.searchText| highlight:this.searchText | sanitizeHtml"></a></mat-card-title>
-          <mat-card-subtitle *ngIf="!searchResult.id && searchResult.path">{{searchResult.path.id}}
-            {{searchResult.path.content}}</mat-card-subtitle>
+              [innerHTML]="searchResult.content | limit:'around':150:this.searchText| highlight:this.searchText:'highlight-search' | sanitizeHtml"></a></mat-card-title>
+          <mat-card-subtitle *ngIf="searchResult.path">
+            {{searchResult.path.content | limit:'start':40}}</mat-card-subtitle>
         </mat-card-header>
       </mat-card>
     </ng-container>

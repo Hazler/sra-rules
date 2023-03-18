@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input } from '@angular/core';
+import { SearchService } from 'src/app/services/search.service';
 import { SettingsService } from 'src/app/services/settings.service';
 import { Section } from '../../model/section';
 
@@ -18,13 +19,27 @@ export class SectionComponent {
   @Input() section!: Section;
 
   /**
+   * The current search text
+   */
+  searchText: string = '';
+
+  /**
    * Creates a new instance
    * @param settingsService Settings service
+   * @param searchService Search service
    * @param elRef Component element reference
    */
-  constructor(settingsService: SettingsService, elRef: ElementRef) {
+  constructor(settingsService: SettingsService, searchService: SearchService, elRef: ElementRef) {
     settingsService.fontSize$.subscribe(f => {
       elRef.nativeElement.style.setProperty('--rules-font-size', `${f}px`);
+    });
+
+    searchService.searchResults$.subscribe(results => {
+      if (this.section) {
+        let result = results.find(r => r.id == this.section.id);
+        if (result)
+          this.searchText = result.match;
+      }
     });
   }
 

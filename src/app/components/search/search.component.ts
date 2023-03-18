@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { Rules } from 'src/app/model/rules';
 import { SearchResult } from 'src/app/model/search-result';
-import { Section } from 'src/app/model/section';
 import { RulesService } from 'src/app/services/rules.service';
+import { SearchService } from 'src/app/services/search.service';
+import { SettingsService } from 'src/app/services/settings.service';
+import { SearchStatus } from '../../model/search-status';
 
 /**
  * Search component
@@ -22,7 +24,7 @@ export class SearchComponent {
   /**
    * The text to search with
    */
-  searchText: string = '';
+  searchText: string;
 
   /**
    * The rules to search through
@@ -30,11 +32,32 @@ export class SearchComponent {
   private rules: Rules | any;
 
   /**
+   * Current status of the serach
+   */
+  status: SearchStatus;
+
+  /**
+   * Shorthand for SearchStatus enum
+   */
+  SearchStatus = SearchStatus;
+
+  /**
    * Creates a new instance
    * @param rulesService The rules service
+   * @param searchService The search service
    */
-  constructor(rulesService: RulesService) {
+  constructor(rulesService: RulesService, private searchService: SearchService, settingsService: SettingsService, elRef: ElementRef) {
+    this.searchText = this.searchService.getSearchText();
+    this.status = this.searchService.getStatus();
+
+    this.searchService.status$.subscribe(status => this.status = status);
+    this.searchService.searchResults$.subscribe(results => this.searchResults = results);
+    this.searchService.searchText$.subscribe(text => this.searchText = text);
     rulesService.data$.subscribe(d => this.rules = d);
+
+    settingsService.fontSize$.subscribe(f => {
+      elRef.nativeElement.style.setProperty('--rules-font-size', `${f}px`);
+    });
   }
 
   /**
@@ -44,43 +67,15 @@ export class SearchComponent {
   onTextChanged(textInputElement: any) {
     let str: string = textInputElement.value;
 
-    this.searchText = '';
+    this.searchResults = [];
 
-    if (str.length > 2) {
-      this.searchResults = [];
-      this.searchText = str;
-      let sections: Section[] = this.rules.content;
-      sections.forEach(s => this.searchSection(s, str.toLowerCase()));
-    }
+    this.searchService.search(this.rules, str);
   }
 
   /**
-   * Searches a section for given search text
-   * @param section Section and it's children to search for given search text
-   * @param searchText The text to search for in section and it's children
-   * @param path The path to the section being searched for
+   * Calls to clear the search information
    */
-  private searchSection(section: Section, searchText: string, path: { id: string | undefined, href: string | undefined, content: string } | undefined = undefined) {
-    if (section.id || section.href) {
-      if (section.header)
-        path = { id: section.id, href: section.href, content: section.header };
-      else if (section.content)
-        path = { id: section.id, href: section.href, content: section.content };
-    }
-
-    if (section.header?.toLowerCase().includes(searchText))
-      this.searchResults.push({ content: `${section.id ?? ''} ${section.header}`, path: path, id: section.id ?? section.href });
-    else if (section.content?.toLowerCase().includes(searchText))
-      this.searchResults.push({ content: `${section.id ?? ''} ${section.content}`, path: path, id: section.id ?? section.href });
-    else if (section.id?.toLowerCase().includes(searchText))
-      this.searchResults.push({ content: `${section.id} ${section.header ?? section.content}`, path: path, id: section.id ?? section.href })
-    else if (section.lists?.length > 0) {
-      section.lists.forEach(l => {
-        if (l.content?.includes(searchText))
-          this.searchResults.push({ content: l.content, path: path, id: section.id ?? section.href });
-      });
-    }
-
-    section.children?.forEach(s => this.searchSection(s, searchText, path));
+  clearSearch() {
+    this.searchService.clearSearch();
   }
 }

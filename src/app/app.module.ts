@@ -30,6 +30,7 @@ import { HighlightPipe } from './pipes/highlight.pipe';
 import { MatTabsModule } from '@angular/material/tabs';
 import { LimitPipe } from './pipes/limit.pipe';
 import { SettingsComponent } from './components/settings/settings.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { SettingsComponent } from './components/settings/settings.component';
     MatFormFieldModule,
     MatDialogModule,
     MatInputModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

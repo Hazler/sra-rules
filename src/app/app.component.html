@@ -1,13 +1,13 @@
 <ng-container>
   <app-header (menuClicked)="menu.toggle()" (settingsClicked)="settings.toggle()"></app-header>
   <mat-sidenav-container>
-    <mat-sidenav #menu autosize position="start">
+    <mat-sidenav #menu autosize position="start" color="primary">
       <app-side-navigation (navItemClicked)="menu.close()"></app-side-navigation>
     </mat-sidenav>
-    <mat-sidenav #settings position="end">
+    <mat-sidenav #settings position="end" color="primary">
       <app-settings></app-settings>
     </mat-sidenav>
-    <mat-sidenav-content>
+    <mat-sidenav-content color="primary">
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
