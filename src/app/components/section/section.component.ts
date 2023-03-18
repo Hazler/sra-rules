@@ -21,7 +21,7 @@ export class SectionComponent {
   /**
    * The current search text
    */
-  searchText: string = '';
+  searchText: string;
 
   /**
    * Creates a new instance
@@ -30,6 +30,7 @@ export class SectionComponent {
    * @param elRef Component element reference
    */
   constructor(settingsService: SettingsService, searchService: SearchService, elRef: ElementRef) {
+    this.searchText = searchService.getSearchText();
     settingsService.fontSize$.subscribe(f => {
       elRef.nativeElement.style.setProperty('--rules-font-size', `${f}px`);
     });

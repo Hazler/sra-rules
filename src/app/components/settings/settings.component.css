@@ -12,3 +12,7 @@
   margin-left: 1em;
   margin-right: 1em;
 }
+
+tr {
+  line-height: 60px;
+}

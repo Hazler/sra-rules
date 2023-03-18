@@ -22,7 +22,7 @@ export class RulesComponent implements AfterContentChecked {
   /**
    * Indicates whether to highlight the changes to the rules or not
    */
-  highlightChanges: boolean = false;
+  highlightChanges: boolean;
 
   /**
    * ID of the section to navigate to
@@ -36,6 +36,7 @@ export class RulesComponent implements AfterContentChecked {
    * @param activatedRoute Activated route
    */
   constructor(rulesService: RulesService, settingsService: SettingsService, activatedRoute: ActivatedRoute) {
+    this.highlightChanges = settingsService.getHighlightValue();
     rulesService.data$.subscribe(d => this.data = d);
     settingsService.highlightChanges$.subscribe(highlight => { this.highlightChanges = highlight; });
     activatedRoute.url.subscribe(url => {
