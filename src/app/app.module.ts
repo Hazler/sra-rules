@@ -31,6 +31,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { LimitPipe } from './pipes/limit.pipe';
 import { SettingsComponent } from './components/settings/settings.component';
 import { MatSelectModule } from '@angular/material/select';
+import { ThemedImagePipe } from './pipes/themed-image.pipe';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { MatSelectModule } from '@angular/material/select';
     SearchComponent,
     HighlightPipe,
     LimitPipe,
-    SettingsComponent
+    SettingsComponent,
+    ThemedImagePipe
   ],
   imports: [
     BrowserModule,

@@ -27,7 +27,7 @@
   </ng-container>
   <ng-container *ngIf="this.section.img">
     <div class="img-container">
-      <img [src]="this.section.img" [alt]="this.section.imgAlt" />
+      <img [src]="this.section.img | themedImage" [alt]="this.section.imgAlt" />
     </div>
   </ng-container>
   <ng-container *ngIf="!!this.section.lists && this.section.lists.length > 0">
