@@ -55,7 +55,7 @@
   <ng-container *ngFor="let attachment of this.attachments">
     <h2 [id]="attachment.id"><a href="#{{attachment.id}}">{{attachment.header}}</a></h2>
     <ng-container *ngIf="attachment.categoryField;else SECTIONS">
-      <mat-tab-group animationDuration="0ms">
+      <mat-tab-group animationDuration="0ms" color="primary" backgroundColor="primary" [selectedIndex]="this.selectedIndex" (selectedIndexChange)="this.selectedIndex = $event">
         <ng-container *ngFor="let category of this.categories">
           <mat-tab [label]="category.name"
             *ngIf="attachment.table || (!!category[attachment.categoryField] && category[attachment.categoryField].length > 0)">

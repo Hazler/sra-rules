@@ -25,6 +25,11 @@ export class AttachmentsComponent {
   @Input() categories: Category[] = [];
 
   /**
+   * Selected index for the tab group
+   */
+  public selectedIndex: number = 0;
+
+  /**
    * Creates a new instance
    * @param windowService Window service
    */
