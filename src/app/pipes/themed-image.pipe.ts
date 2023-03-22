@@ -1,13 +1,16 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { SettingsService } from '../services/settings.service';
 
+/**
+ * Adds the theme name to the image name before the extension.
+ */
 @Pipe({
-  name: 'themedImage'
+  name: 'themedImage',
+  pure: false
 })
 export class ThemedImagePipe implements PipeTransform {
 
   constructor(private settingsService: SettingsService) {
-
   }
 
   /**
