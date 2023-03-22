@@ -30,7 +30,9 @@
 }
 
 .light {
-  @include mat.all-component-themes($light-theme);
+  @include mat.all-component-colors($light-theme);
+  @include mat.all-component-typographies($light-theme);
+  @include mat.all-component-densities($light-theme);
 
   a {
     color: mat-contrast($md-light, 500);

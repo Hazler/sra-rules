@@ -175,8 +175,6 @@ $dark-theme: mat.define-dark-theme((color: (primary: mat.define-palette($md-dark
 $light-theme: mat.define-light-theme((color: (primary: mat.define-palette($md-light),
         accent: mat.define-palette($md-blue),
         warn: mat.define-palette($md-red)),
-      typography: mat.define-typography-config(),
-      density: 0,
     ));
 
 // Apply the dark theme by default

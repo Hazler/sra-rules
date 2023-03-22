@@ -3,7 +3,7 @@ mat-toolbar {
   top: 0;
   z-index: 1000;
   /* Ensure that your app's content doesn't overlap the toolbar */
-  height: 40px;
+  height: 56px;
 }
 
 .title {
