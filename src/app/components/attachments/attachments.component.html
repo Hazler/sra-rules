@@ -17,7 +17,10 @@
         <tr *ngFor="let row of attachment.table; let i = index">
           <ng-container *ngIf="attachment.categoryField">
             <td class="id">{{row.id}}.</td>
-            <td class="content" [innerHTML]="row.content | highlightNew:row | sanitizeHtml"></td>
+            <td class="content">
+              <span [innerHTML]="row.content | highlightNew:row | sanitizeHtml"></span>
+              <sup *ngIf="row.superscript" [innerHTML]="row.superscript | sanitizeHtml"></sup>
+            </td>
             <td class="category" *ngFor="let category of this.categories">
               <p *ngIf="category && category[attachment.categoryField]">
                 <span
@@ -55,7 +58,8 @@
   <ng-container *ngFor="let attachment of this.attachments">
     <h2 [id]="attachment.id"><a href="#{{attachment.id}}">{{attachment.header}}</a></h2>
     <ng-container *ngIf="attachment.categoryField;else SECTIONS">
-      <mat-tab-group animationDuration="0ms" color="primary" backgroundColor="primary" [selectedIndex]="this.selectedIndex" (selectedIndexChange)="this.selectedIndex = $event">
+      <mat-tab-group animationDuration="0ms" color="primary" backgroundColor="primary"
+        [selectedIndex]="this.selectedIndex" (selectedIndexChange)="this.selectedIndex = $event">
         <ng-container *ngFor="let category of this.categories">
           <mat-tab [label]="category.name"
             *ngIf="attachment.table || (!!category[attachment.categoryField] && category[attachment.categoryField].length > 0)">
