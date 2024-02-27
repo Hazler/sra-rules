@@ -12,6 +12,12 @@
       <span
         [innerHTML]="this.section.content | highlightNew:this.section | highlight:this.searchText:'highlight-search' | refs:this.section | sanitizeHtml"></span>
     </p>
+    <p [id]="this.section.id" *ngSwitchCase="3" class="child-container">
+      <a href="#{{this.section.id}}"
+        [innerHTML]="this.section.id + '&nbsp;' | highlightNew:this.section | highlight:this.searchText:'highlight-search' | sanitizeHtml"></a>
+      <span
+        [innerHTML]="this.section.content | highlightNew:this.section | highlight:this.searchText:'highlight-search' | refs:this.section | sanitizeHtml"></span>
+    </p>
     <ng-container *ngSwitchDefault>
       <div [id]="this.section.href" class="child-container">
         <p *ngIf="!this.section.header;else HEADER" [innerHtml]="this.section.content | highlightNew:this.section |

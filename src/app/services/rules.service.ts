@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { SRArules80 } from 'src/data/sra-saannot-8.0';
+import { SRArules81 } from 'src/data/sra-saannot-8.1';
 import { Rules } from '../model/rules';
 
 /**
@@ -14,7 +14,7 @@ export class RulesService {
   /**
    * The rules data
    */
-  private data: BehaviorSubject<any> = new BehaviorSubject(SRArules80);
+  private data: BehaviorSubject<any> = new BehaviorSubject(SRArules81);
 
   /**
    * Observable for rules data

@@ -5,7 +5,7 @@
 <ng-template #DESKTOP>
   <ng-container *ngFor="let attachment of this.attachments">
     <ng-container *ngIf="attachment">
-      <h2 [id]="attachment.id"><a href="#{{attachment.id}}">{{attachment.header}}</a></h2>
+      <h2 [id]="attachment.id"><a href="#{{attachment.id}}" [innerHTML]="attachment.header | highlightNew:attachment"></a></h2>
       <table *ngIf="attachment.table && attachment.categoryField;else SECTIONS">
         <tr>
           <th></th>
