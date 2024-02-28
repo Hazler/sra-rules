@@ -102,8 +102,8 @@ export class SearchService {
 
           let results: SearchResult[] = [];
 
-          rules.content.forEach(s => this.searchSection(s, searchText, results));
-          rules.attachments.forEach(a => this.searchAttachment(a, rules.categories, searchText, results));
+          rules.content?.forEach(s => this.searchSection(s, searchText, results));
+          rules.attachments?.forEach(a => this.searchAttachment(a, rules.categories, searchText, results));
 
           this.searchResults.next(results);
           this.status.next(SearchStatus.Complete);
