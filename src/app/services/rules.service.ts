@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { SRAmatchguide } from 'src/data/sra-kilpailujen-jarjestamisohje';
 import { SRArules80 } from 'src/data/sra-saannot-8.0';
 import { SRArules81 } from 'src/data/sra-saannot-8.1';
 
@@ -20,7 +21,7 @@ export class RulesService {
   /**
    * All available rule sets.
    */
-  private static availableRuleSets: any[] = [SRArules81, SRArules80];
+  private static availableRuleSets: any[] = [SRArules81, SRArules80, SRAmatchguide];
 
   /**
    * Names for available rule sets

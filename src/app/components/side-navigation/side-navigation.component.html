@@ -2,7 +2,7 @@
   <mat-card *ngIf="section.id">
     <mat-card-header (click)="this.openClose(section)">
       <mat-card-title>
-        <a *ngIf="!this.opened[section.id].isExpandable" href="#{{section.id}}" (click)="this.navItemClicked.emit()">
+        <a *ngIf="section.id && !this.opened[section.id].isExpandable" href="#{{section.id}}" (click)="this.navItemClicked.emit()">
           {{section.id}} {{section.header}}
         </a>
         <div *ngIf="this.opened[section.id].isExpandable">
@@ -21,10 +21,32 @@
       </mat-nav-list>
     </mat-card-content>
   </mat-card>
+  <mat-card *ngIf="!section.id && section.depth && section.href">
+    <mat-card-header (click)="this.openClose(section)">
+      <mat-card-title>
+        <a *ngIf="!this.opened[section.href].isExpandable" href="#{{section.href}}" (click)="this.navItemClicked.emit()">
+          {{section.header}}
+        </a>
+        <div *ngIf="this.opened[section.href].isExpandable">
+          <span>{{section.header}}</span>
+          <mat-icon *ngIf="!this.opened[section.href].isOpen">expand_more</mat-icon>
+          <mat-icon *ngIf="this.opened[section.href].isOpen">expand_less</mat-icon>
+        </div>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content *ngIf="this.opened[section.href].isOpen">
+      <mat-nav-list *ngIf="section.children">
+        <ng-container *ngFor="let child of section.children">
+          <a *ngIf="child.header" href="#{{child.href}}" mat-list-item
+            (click)="this.navItemClicked.emit();this.openClose(section)">{{child.header}}</a>
+        </ng-container>
+      </mat-nav-list>
+    </mat-card-content>
+  </mat-card>
 </ng-container>
 
 <ng-container>
-  <mat-expansion-panel #komennot>
+  <mat-expansion-panel *ngIf="this.getCommands()?.length > 0" #komennot>
     <mat-expansion-panel-header>KOMENNOT</mat-expansion-panel-header>
     <mat-nav-list>
       <a href="#{{command.href}}" mat-list-item *ngFor="let command of this.getCommands()"
@@ -37,7 +59,7 @@
 </ng-container>
 
 <ng-container>
-  <mat-expansion-panel #liitteet>
+  <mat-expansion-panel *ngIf="this.data.attachments && this.data.attachments.length > 0" #liitteet>
     <mat-expansion-panel-header>LIITTEET</mat-expansion-panel-header>
     <mat-nav-list>
       <a href="#{{attachment.id}}" mat-list-item *ngFor="let attachment of this.data.attachments"

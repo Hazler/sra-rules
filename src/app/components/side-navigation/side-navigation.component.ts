@@ -30,10 +30,14 @@ export class SideNavigationComponent {
    * @param rulesService The rules service
    */
   constructor(rulesService: RulesService) {
-    rulesService.data$.subscribe(d => this.data = d);
-    this.data.content.map((s: Section) => {
-      if (s.id)
-        this.opened[s.id] = { isOpen: false, isExpandable: s.children.some(c => c.header) };
+    rulesService.data$.subscribe(d => {
+      this.data = d
+      this.data.content.map((s: Section) => {
+        if (s.id)
+          this.opened[s.id] = { isOpen: false, isExpandable: s.children?.some(c => c.header) };
+        else if (s.depth && s.href)
+          this.opened[s.href] = { isOpen: false, isExpandable: s.children?.some(c => c.header) };
+      });
     });
   }
 
@@ -54,5 +58,7 @@ export class SideNavigationComponent {
   openClose(section: Section) {
     if (section.id)
       this.opened[section.id].isOpen = !this.opened[section.id].isOpen;
+    else if (section.depth && section.href)
+      this.opened[section.href].isOpen = !this.opened[section.href].isOpen;
   }
 }

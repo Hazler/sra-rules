@@ -19,7 +19,7 @@
         [innerHTML]="this.section.content | highlightNew:this.section | highlight:this.searchText:'highlight-search' | refs:this.section | sanitizeHtml"></span>
     </p>
     <ng-container *ngSwitchDefault>
-      <div [id]="this.section.href" class="child-container">
+      <div [id]="this.section.href" class="child-container" [ngClass]="{'indent': section.indent}">
         <p *ngIf="!this.section.header;else HEADER" [innerHtml]="this.section.content | highlightNew:this.section |
         highlight:this.searchText:'highlight-search' | refs:this.section | sanitizeHtml"></p>
         <ng-template #HEADER>

@@ -49,6 +49,9 @@ export class SectionComponent {
    * @returns Depth of the section to determine the header/content size
    */
   getSectionDepth() {
+    if (this.section.depth)
+      return this.section.depth;
+
     if (this.section.id && this.section.id.length == 1 && Number.parseInt(this.section.id))
       return 0;
 

@@ -9,6 +9,10 @@ export interface SectionBase extends NewParts {
    * ID of the section
    */
   id: string | undefined;
+
+  depth: number | undefined;
+
+  indent: boolean | undefined;
   
   /**
    * Content of the section

@@ -43,3 +43,7 @@ img {
 *>p, *>li, *>td {
   font-size: var(--rules-font-size);
 }
+
+.indent {
+  margin-left: 5em;
+}
