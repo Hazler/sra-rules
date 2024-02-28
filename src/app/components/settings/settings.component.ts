@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RulesService } from 'src/app/services/rules.service';
 import { SettingsService } from 'src/app/services/settings.service';
 
 /**
@@ -32,15 +33,28 @@ export class SettingsComponent {
   public themes = SettingsService.AvailableThemes;
 
   /**
+   * Current application rule set
+   */
+  currentRuleSet: string;
+
+  /**
+   * Available rule sets for the application, shorthand for the template
+   */
+  public ruleSets = RulesService.AvailableRuleSetNames;
+
+  /**
    * Creates a new instance
    * @param rulesService The rules service
    */
-  constructor(private settingsService: SettingsService) {
+  constructor(private settingsService: SettingsService, private rulesService: RulesService) {
     this.theme = settingsService.getTheme();
+    this.currentRuleSet = rulesService.getCurrentName();
 
     settingsService.fontSize$.subscribe(f => this.fontSize = f);
     settingsService.highlightChanges$.subscribe(h => this.highlightChanged = h);
     settingsService.theme$.subscribe(t => this.theme = t);
+    
+    rulesService.data$.subscribe(d => this.currentRuleSet = d.title);
   }
 
   /**
@@ -57,6 +71,14 @@ export class SettingsComponent {
    */
   setTheme(theme: string) {
     this.settingsService.changeTheme(theme);
+  }
+
+  /**
+   * Sets the application rule set
+   * @param rules Name of the rule set for the application
+   */
+  setRules(rules: string) {
+    this.rulesService.changeRules(rules);
   }
 
   /**

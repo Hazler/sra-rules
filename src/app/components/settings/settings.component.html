@@ -2,6 +2,15 @@
   <h2>Asetukset</h2>
   <table>
     <tr>
+      <td>Sääntöversio</td>
+      <td><mat-select (selectionChange)="this.setRules($event.value)" color="primary" [(value)]="this.currentRuleSet">
+        <mat-option *ngFor="let rules of this.ruleSets" [value]="rules">
+          {{rules}}
+        </mat-option>
+      </mat-select>
+      </td>
+    </tr>
+    <tr>
       <td>Korosta muutokset</td>
       <td>
         <mat-checkbox color="primary" [checked]="this.highlightChanged" (change)="this.onHighlightChanged($event)"
