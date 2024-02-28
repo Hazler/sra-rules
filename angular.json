@@ -56,10 +56,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "sra-rules:build:production"
+              "buildTarget": "sra-rules:build:production"
             },
             "development": {
-              "browserTarget": "sra-rules:build:development"
+              "buildTarget": "sra-rules:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -67,7 +67,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sra-rules:build"
+            "buildTarget": "sra-rules:build"
           }
         },
         "test": {
