@@ -1,56 +1,61 @@
 @use '@angular/material' as mat;
-@import '@angular/material/theming';
+@use 'sass:map';
 
 /* You can add global styles to this file, and also import other style files */
 
 // import our custom theme
-@import 'themes.scss';
+@use 'themes';
+
+$dark-contrast-500: map.get(map.get(themes.$md-dark, contrast), 500);
 
 .dark {
-  @include mat.all-component-themes($dark-theme);
+  @include mat.all-component-themes(themes.$dark-theme);
 
   a {
-    color: mat-contrast($md-dark, 500);
+    // color: mat-contrast(themes.$md-dark, 500);
+    color: $dark-contrast-500;
   }
 
   .highlight-search {
-    background-color: mat-color($md-green, 200);
+    background-color: map.get(themes.$md-green, 200);
   }
 
   .highlight-new {
-    background-color: mat-color($md-green, 300);
+    background-color: map.get(themes.$md-green, 300);
   }
 
   td.id,
   td.content,
   td.category,
   th.category {
-    border: 1px solid mat-contrast($md-dark, 500);
+    border: 1px solid $dark-contrast-500;
   }
 }
 
+$light-contrast-500: map.get(map.get(themes.$md-light, contrast), 500);
+
 .light {
-  @include mat.all-component-colors($light-theme);
-  @include mat.all-component-typographies($light-theme);
-  @include mat.all-component-densities($light-theme);
+  @include mat.all-component-colors(themes.$light-theme);
+  @include mat.all-component-typographies(themes.$light-theme);
+  @include mat.all-component-densities(themes.$light-theme);
 
   a {
-    color: mat-contrast($md-light, 500);
+    color: $light-contrast-500;
   }
 
   .highlight-search {
-    background-color: mat-color($md-green, 50);
+    background-color: map.get(themes.$md-green, 50);
   }
 
   .highlight-new {
-    background-color: mat-color($md-green, 100);
+    background-color: map.get(themes.$md-green, 100);
   }
 
   td.id,
   td.content,
   td.category,
   th.category {
-    border: 1px solid mat-contrast($md-light, 500);
+    border: 1px solid $light-contrast-500;
   }
 }
 
