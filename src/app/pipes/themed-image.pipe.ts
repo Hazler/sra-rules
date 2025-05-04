@@ -5,8 +5,9 @@ import { SettingsService } from '../services/settings.service';
  * Adds the theme name to the image name before the extension.
  */
 @Pipe({
-  name: 'themedImage',
-  pure: false
+    name: 'themedImage',
+    pure: false,
+    standalone: false
 })
 export class ThemedImagePipe implements PipeTransform {
 

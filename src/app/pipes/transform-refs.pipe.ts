@@ -5,7 +5,10 @@ import { SubSection } from '../model/sub-section';
 /**
  * Transforms references of a subsection to hyperlinks
  */
-@Pipe({ name: 'refs' })
+@Pipe({
+    name: 'refs',
+    standalone: false
+})
 export class TransformRefsPipe implements PipeTransform {
 
   /**

@@ -9,7 +9,8 @@ import { SettingsService } from '../services/settings.service';
  * Transforms text to contain <span></span> element with a different background color.
  */
 @Pipe({
-  name: 'highlightNew'
+    name: 'highlightNew',
+    standalone: false
 })
 export class HighlightNewPipe implements PipeTransform {
 

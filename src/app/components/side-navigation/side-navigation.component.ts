@@ -4,9 +4,10 @@ import { Section } from 'src/app/model/section';
 import { RulesService } from 'src/app/services/rules.service';
 
 @Component({
-  selector: 'app-side-navigation',
-  templateUrl: './side-navigation.component.html',
-  styleUrls: ['./side-navigation.component.css']
+    selector: 'app-side-navigation',
+    templateUrl: './side-navigation.component.html',
+    styleUrls: ['./side-navigation.component.css'],
+    standalone: false
 })
 export class SideNavigationComponent {
 

@@ -6,9 +6,10 @@ import { SettingsService } from 'src/app/services/settings.service';
  * Component for modifying application settings
  */
 @Component({
-  selector: 'app-settings',
-  templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.css']
+    selector: 'app-settings',
+    templateUrl: './settings.component.html',
+    styleUrls: ['./settings.component.css'],
+    standalone: false
 })
 export class SettingsComponent {
 

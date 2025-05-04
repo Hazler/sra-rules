@@ -8,9 +8,10 @@ import { WindowService } from '../../services/window.service';
  * Component for displaying attachments
  */
 @Component({
-  selector: 'app-attachments',
-  templateUrl: './attachments.component.html',
-  styleUrls: ['./attachments.component.css']
+    selector: 'app-attachments',
+    templateUrl: './attachments.component.html',
+    styleUrls: ['./attachments.component.css'],
+    standalone: false
 })
 export class AttachmentsComponent {
 

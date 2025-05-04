@@ -4,7 +4,8 @@ import { Pipe, PipeTransform } from '@angular/core';
  * Transforms text by limiting it to a certain length from the provided position
  */
 @Pipe({
-  name: 'limit'
+    name: 'limit',
+    standalone: false
 })
 export class LimitPipe implements PipeTransform {
 

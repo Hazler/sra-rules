@@ -4,7 +4,8 @@ import { Pipe, PipeTransform } from '@angular/core';
  * Transforms text to contain <span></span> element with a different background color.
  */
 @Pipe({
-  name: 'highlight'
+    name: 'highlight',
+    standalone: false
 })
 export class HighlightPipe implements PipeTransform {
 

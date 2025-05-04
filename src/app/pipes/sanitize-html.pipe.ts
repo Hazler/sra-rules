@@ -4,7 +4,10 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 /**
  * Sanitizes a string to SafeHtml
  */
-@Pipe({ name: 'sanitizeHtml' })
+@Pipe({
+    name: 'sanitizeHtml',
+    standalone: false
+})
 export class SanitizeHtmlPipe implements PipeTransform {
 
   /**
