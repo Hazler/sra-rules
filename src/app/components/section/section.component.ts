@@ -40,6 +40,8 @@ export class SectionComponent {
         let result = results.find(r => r.id == this.section.id);
         if (result)
           this.searchText = result.match;
+        else
+          this.searchText = '';
       }
     });
   }
