@@ -5,9 +5,9 @@ android {
     defaultConfig {
         applicationId "fi.luukas.sra"
         minSdkVersion rootProject.ext.minSdkVersion
-        targetSdk 33
-        versionCode 8
-        versionName '1.1'
+        targetSdk 34
+        versionCode 11
+        versionName '1.2'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
              // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
