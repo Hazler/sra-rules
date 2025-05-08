@@ -7,6 +7,7 @@ import { Section } from '../model/section';
 import { SearchPath } from '../model/search-path';
 import { Category } from '../model/category';
 import { SearchStatus } from '../model/search-status';
+import { SectionList } from '../model/list';
 
 /**
  * Service for providing application search functionality
@@ -142,22 +143,33 @@ export class SearchService {
           results.push({ content: `${section.id} ${section.header ?? section.content}`, path: path, id: section.id ?? section.href, match: idMatch[0] })
         else
           if (section.lists?.length > 0) {
-            section.lists.forEach(sectionList => {
-              let sectionListContentMatch = sectionList.content?.match(regex);
-              if (sectionListContentMatch && sectionListContentMatch.length > 0)
-                results?.push({ content: sectionList.content, path: path, id: section.id ?? section.href, match: sectionListContentMatch[0] });
-
-              sectionList.list?.forEach(item => {
-                let listContentMatch = item.content?.match(regex);
-                if (listContentMatch && listContentMatch.length > 0)
-                  results?.push({ content: item.content, path: path, id: section.id ?? section.href, match: listContentMatch[0] });
-              })
-            });
+            section.lists.forEach(list => this.searchList(list, regex, results, path));
           }
       }
     }
 
     section.children?.forEach(s => this.searchSection(s, searchText, results, path));
+  }
+
+  /**
+   * Searches list contents for given search text
+   * @param sectionList A list and it's children to search for given search text
+   * @param searchText The text to search for in list and it's children
+   * @param path The path to the section being searched for
+   */
+  private searchList(sectionList: SectionList, regex: RegExp, results: SearchResult[], path: SearchPath | undefined = undefined) {
+    let sectionListContentMatch = sectionList.content?.match(regex);
+    if (sectionListContentMatch && sectionListContentMatch.length > 0)
+      results?.push({ content: sectionList.content, path: path, id: sectionList.id, match: sectionListContentMatch[0] });
+
+    sectionList.list?.forEach(item => {
+      let listContentMatch = item.content?.match(regex);
+      if (listContentMatch && listContentMatch.length > 0)
+        results?.push({ content: item.content, path: path, id: sectionList.id, match: listContentMatch[0] });
+
+      if (item.lists?.length > 0)
+        item.lists.forEach(list => this.searchList(list, regex, results, path));
+    })
   }
 
   /**

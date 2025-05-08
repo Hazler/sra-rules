@@ -32,11 +32,13 @@ import { LimitPipe } from './pipes/limit.pipe';
 import { SettingsComponent } from './components/settings/settings.component';
 import { MatSelectModule } from '@angular/material/select';
 import { ThemedImagePipe } from './pipes/themed-image.pipe';
+import { SectionListComponent } from "./components/section-list/section-list.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     SectionComponent,
+    SectionListComponent,
     TransformRefsPipe,
     AttachmentsComponent,
     RulesComponent,
@@ -68,7 +70,7 @@ import { ThemedImagePipe } from './pipes/themed-image.pipe';
     MatInputModule,
     MatTabsModule,
     MatSelectModule
-  ],
+],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -37,30 +37,8 @@
     </div>
   </ng-container>
   <ng-container *ngIf="!!this.section.lists && this.section.lists.length > 0">
-    <ng-container *ngFor="let list of this.section.lists;let i = index">
-      <div class="child-container">
-        <p [innerHTML]="list.content | highlightNew:list | highlight:this.searchText:'highlight-search' | sanitizeHtml">
-        </p>
-        <ng-container *ngIf="!!list.listType;else DEFAULTLIST">
-          <ol [type]="list.listType" [start]="this.getStartValue(i)">
-            <li *ngFor="let item of list.list">
-              <p
-                [innerHTML]="item.content | highlightNew:item | highlight:this.searchText:'highlight-search' | refs:item | sanitizeHtml">
-              </p>
-            </li>
-          </ol>
-        </ng-container>
-        <ng-template #DEFAULTLIST>
-          <ul>
-            <li *ngFor="let item of list.list">
-              <p
-                [innerHTML]="item.content | highlightNew:item | highlight:this.searchText:'highlight-search' | refs:item | sanitizeHtml">
-              </p>
-            </li>
-          </ul>
-        </ng-template>
-      </div>
-    </ng-container>
+    <app-section-list *ngFor="let list of this.section.lists;let i = index" [list]="list"
+      [startValue]="this.getStartValue(i)"></app-section-list>
   </ng-container>
   <ng-container *ngIf="!!this.section.children && this.section.children.length > 0">
     <app-section *ngFor="let item of this.section.children" [section]="item"></app-section>

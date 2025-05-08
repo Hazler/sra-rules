@@ -1,0 +1,30 @@
+<div class="child-container">
+  <p [innerHTML]="list.content | highlightNew:list | highlight:this.searchText:'highlight-search' | sanitizeHtml">
+  </p>
+  <ng-container *ngIf="!!list.listType;else DEFAULTLIST">
+    <ol [type]="list.listType" [start]="this.startValue">
+      <li *ngFor="let item of list.list">
+        <div>
+          <p
+            [innerHTML]="item.content | highlightNew:item | highlight:this.searchText:'highlight-search' | refs:item | sanitizeHtml">
+          </p>
+          <app-section-list *ngFor="let listItem of item.lists" [list]="listItem">
+          </app-section-list>
+        </div>
+      </li>
+    </ol>
+  </ng-container>
+  <ng-template #DEFAULTLIST>
+    <ul>
+      <li *ngFor="let item of list.list">
+        <div>
+          <p
+            [innerHTML]="item.content | highlightNew:item | highlight:this.searchText:'highlight-search' | refs:item | sanitizeHtml">
+          </p>
+          <app-section-list *ngFor="let listItem of item.lists" [list]="listItem">
+          </app-section-list>
+        </div>
+      </li>
+    </ul>
+  </ng-template>
+</div>

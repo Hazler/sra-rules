@@ -1,3 +1,4 @@
+import { SectionList } from "./list";
 import { SectionBase } from "./section-base";
 import { SectionRef } from "./section-ref";
 
@@ -10,5 +11,7 @@ export interface SubSection extends SectionBase {
    * References to other sections
    */
   refs: SectionRef[];
+
+  lists: SectionList[];
 
 }

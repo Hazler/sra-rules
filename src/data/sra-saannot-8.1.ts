@@ -1010,18 +1010,22 @@ export const SRArules81 = {
                                 { "id": "9", "content": "Taisteluliivi/varusteliivi (chest rig), sirpalesuojaliivi tai luotisuojaliivi (plate carrier)." },
                                 { "id": "10", "content": "Palveluskäyttöön sopivat ja hillityn väriset käsineet." },
                                 {
-                                    "id": "11", "content": "Kenttäkelpoinen vaatetus", "list": [
-                                        { "content": "Palveluskäyttöön sopiva" },
-                                        { "content": "Hillityn värinen" },
-                                        { "content": "Pitkälahkeinen ja pitkähihainen" }
-                                    ]
+                                    "id": "11", "content": "Kenttäkelpoinen vaatetus", "lists": [{
+                                        "list": [
+                                            { "content": "Palveluskäyttöön sopiva" },
+                                            { "content": "Hillityn värinen" },
+                                            { "content": "Pitkälahkeinen ja pitkähihainen" }
+                                        ]
+                                    }]
                                 },
                                 {
-                                    "id": "12", "content": "Kenttäkelpoiset jalkineet", "list": [
-                                        { "content": "Palveluskäyttöön sopivat" },
-                                        { "content": "Hillityn väriset" },
-                                        { "content": "Pitkävartiset eli jalkineen varren tulee peittää nilkan kehräsluu" }
-                                    ]
+                                    "id": "12", "content": "Kenttäkelpoiset jalkineet", "lists": [{
+                                        "list": [
+                                            { "content": "Palveluskäyttöön sopivat" },
+                                            { "content": "Hillityn väriset" },
+                                            { "content": "Pitkävartiset eli jalkineen varren tulee peittää nilkan kehräsluu" }
+                                        ]
+                                    }]
                                 }]
                         }
                     ]
