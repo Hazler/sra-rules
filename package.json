@@ -20,14 +20,14 @@
     "@angular/platform-browser": "^19.2.9",
     "@angular/platform-browser-dynamic": "^19.2.9",
     "@angular/router": "^19.2.9",
-    "@capacitor/android": "^4.7.0",
-    "@capacitor/cli": "^5.0.0-beta.2",
-    "@capacitor/core": "^4.7.0",
-    "@capacitor/ios": "^4.7.0",
+    "@capacitor/android": "^7.2.0",
+    "@capacitor/cli": "^7.2.0",
+    "@capacitor/core": "^7.2.0",
+    "@capacitor/ios": "^7.2.0",
     "ngx-cookie-service": "^19.1.2",
-    "ngx-rerender": "^1.1.0",
-    "rxjs": "~7.8.0",
-    "tslib": "^2.3.0",
+    "ngx-rerender": "^1.4.0",
+    "rxjs": "^7.8.2",
+    "tslib": "^2.8.1",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
@@ -43,8 +43,8 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
     "sass": "^1.87.0",
-    "sass-loader": "^13.2.0",
-    "typescript": "~5.5.4",
+    "sass-loader": "^16.0.5",
+    "typescript": "^5.8.3",
     "webextension-polyfill": "^0.10.0",
     "webpack": "^5.76.2"
   }
