@@ -2,9 +2,10 @@
   <mat-icon color="primary-50" (click)="this.menuClicked.emit()">menu</mat-icon>
   <span class="title">{{this.rules.title}}</span>
 
-  <mat-icon *ngIf="!this.hasActiveSearch;else ACTIVESEARCH" color="primary-50" (click)="this.openSearch()">search</mat-icon>
-  <ng-template #ACTIVESEARCH>
+  @if (!this.hasActiveSearch) {
+    <mat-icon color="primary-50" (click)="this.openSearch()">search</mat-icon>
+  } @else {
     <mat-icon color="primary-50" (click)="this.openSearch()">saved_search</mat-icon>
-  </ng-template>
+  }
   <mat-icon color="primary-50" (click)="this.settingsClicked.emit()">settings</mat-icon>
 </mat-toolbar>

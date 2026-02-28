@@ -1,46 +1,59 @@
 <div>
-  <ng-container [ngSwitch]="this.getSectionDepth()">
-    <h2 [id]="this.section.id" *ngSwitchCase="0"><a class="md-accent" href="#{{this.section.id}}"
-        [innerHTML]="this.section.id + ' ' + this.section.header | highlightNew:this.section | highlight:this.searchText:'highlight-search' | sanitizeHtml"></a>
+  @switch (this.getSectionDepth()) {
+    @case (0) {
+      <h2 [id]="this.section.id"><a class="md-accent" href="#{{this.section.id}}"
+      [innerHTML]="this.section.id + ' ' + this.section.header | highlightNew:this.section | highlight:this.searchText:'highlight-search' | sanitizeHtml"></a>
     </h2>
-    <h3 [id]="this.section.id" *ngSwitchCase="1"><a href="#{{this.section.id}}"
-        [innerHTML]="this.section.id + ' ' + this.section.header | highlightNew:this.section | highlight:this.searchText:'highlight-search' | sanitizeHtml"></a>
-    </h3>
-    <p [id]="this.section.id" *ngSwitchCase="2" class="child-container">
-      <a href="#{{this.section.id}}"
-        [innerHTML]="this.section.id + '&nbsp;' | highlightNew:this.section | highlight:this.searchText:'highlight-search' | sanitizeHtml"></a>
-      <span
-        [innerHTML]="this.section.content | highlightNew:this.section | highlight:this.searchText:'highlight-search' | refs:this.section | sanitizeHtml"></span>
-    </p>
-    <p [id]="this.section.id" *ngSwitchCase="3" class="child-container">
-      <a href="#{{this.section.id}}"
-        [innerHTML]="this.section.id + '&nbsp;' | highlightNew:this.section | highlight:this.searchText:'highlight-search' | sanitizeHtml"></a>
-      <span
-        [innerHTML]="this.section.content | highlightNew:this.section | highlight:this.searchText:'highlight-search' | refs:this.section | sanitizeHtml"></span>
-    </p>
-    <ng-container *ngSwitchDefault>
-      <div [id]="this.section.href" class="child-container" [ngClass]="{'indent': section.indent}">
-        <p *ngIf="!this.section.header;else HEADER" [innerHtml]="this.section.content | highlightNew:this.section |
+  }
+  @case (1) {
+    <h3 [id]="this.section.id"><a href="#{{this.section.id}}"
+    [innerHTML]="this.section.id + ' ' + this.section.header | highlightNew:this.section | highlight:this.searchText:'highlight-search' | sanitizeHtml"></a>
+  </h3>
+}
+@case (2) {
+  <p [id]="this.section.id" class="child-container">
+    <a href="#{{this.section.id}}"
+    [innerHTML]="this.section.id + '&nbsp;' | highlightNew:this.section | highlight:this.searchText:'highlight-search' | sanitizeHtml"></a>
+    <span
+    [innerHTML]="this.section.content | highlightNew:this.section | highlight:this.searchText:'highlight-search' | refs:this.section | sanitizeHtml"></span>
+  </p>
+}
+@case (3) {
+  <p [id]="this.section.id" class="child-container">
+    <a href="#{{this.section.id}}"
+    [innerHTML]="this.section.id + '&nbsp;' | highlightNew:this.section | highlight:this.searchText:'highlight-search' | sanitizeHtml"></a>
+    <span
+    [innerHTML]="this.section.content | highlightNew:this.section | highlight:this.searchText:'highlight-search' | refs:this.section | sanitizeHtml"></span>
+  </p>
+}
+@default {
+  <div [id]="this.section.href" class="child-container" [ngClass]="{'indent': section.indent}">
+    @if (!this.section.header) {
+<p [innerHtml]="this.section.content | highlightNew:this.section |
         highlight:this.searchText:'highlight-search' | refs:this.section | sanitizeHtml"></p>
-        <ng-template #HEADER>
-          <h4><a href="#{{this.section.href}}">{{this.section.header}} {{this.section.subheader ?? ''}}</a></h4>
-          <p
-            [innerHTML]="this.section.content | highlightNew:this.section | highlight:this.searchText:'highlight-search' | refs:this.section | sanitizeHtml">
-          </p>
-        </ng-template>
-      </div>
-    </ng-container>
-  </ng-container>
-  <ng-container *ngIf="this.section.img">
-    <div class="img-container">
-      <img [src]="this.section.img | themedImage" [alt]="this.section.imgAlt" />
-    </div>
-  </ng-container>
-  <ng-container *ngIf="!!this.section.lists && this.section.lists.length > 0">
-    <app-section-list *ngFor="let list of this.section.lists;let i = index" [list]="list"
-      [startValue]="this.getStartValue(i)"></app-section-list>
-  </ng-container>
-  <ng-container *ngIf="!!this.section.children && this.section.children.length > 0">
-    <app-section *ngFor="let item of this.section.children" [section]="item"></app-section>
-  </ng-container>
+    } @else {
+      <h4><a href="#{{this.section.href}}">{{this.section.header}} {{this.section.subheader ?? ''}}</a></h4>
+      <p
+        [innerHTML]="this.section.content | highlightNew:this.section | highlight:this.searchText:'highlight-search' | refs:this.section | sanitizeHtml">
+      </p>
+    }
+  </div>
+}
+}
+@if (this.section.img) {
+  <div class="img-container">
+    <img [src]="this.section.img | themedImage" [alt]="this.section.imgAlt" />
+  </div>
+}
+@if (!!this.section.lists && this.section.lists.length > 0) {
+  @for (list of this.section.lists; track list; let i = $index) {
+    <app-section-list [list]="list"
+    [startValue]="this.getStartValue(i)"></app-section-list>
+  }
+}
+@if (!!this.section.children && this.section.children.length > 0) {
+  @for (item of this.section.children; track item) {
+    <app-section [section]="item"></app-section>
+  }
+}
 </div>

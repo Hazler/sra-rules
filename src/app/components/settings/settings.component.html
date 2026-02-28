@@ -4,35 +4,39 @@
     <tr>
       <td>Sääntöversio</td>
       <td><mat-select (selectionChange)="this.setRules($event.value)" color="primary" [(value)]="this.currentRuleSet">
-        <mat-option *ngFor="let rules of this.ruleSets" [value]="rules">
-          {{rules}}
-        </mat-option>
-      </mat-select>
-      </td>
-    </tr>
-    <tr>
-      <td>Korosta muutokset</td>
-      <td>
-        <mat-checkbox color="primary" [checked]="this.highlightChanged" (change)="this.onHighlightChanged($event)"
-          labelPosition="before">
-        </mat-checkbox>
-      </td>
-    </tr>
-    <tr>
-      <td>Tekstin koko</td>
-      <td>
-        <mat-icon color="primary-50" (click)="this.decreaseFontSize()">text_decrease</mat-icon>
-        <span class="font-value">{{this.fontSize}}</span>
-        <mat-icon color="primary-50" (click)="this.increaseFontSize()">text_increase</mat-icon>
-      </td>
-    </tr>
-    <tr>
-      <td>Teema</td>
-      <td><mat-select (selectionChange)="this.setTheme($event.value)" color="primary" [(value)]="this.theme">
-          <mat-option *ngFor="let theme of this.themes" [value]="theme.key">
-            {{theme.displayValue}}
+        @for (rules of this.ruleSets; track rules) {
+          <mat-option [value]="rules">
+            {{rules}}
           </mat-option>
-        </mat-select></td>
-    </tr>
-  </table>
+        }
+      </mat-select>
+    </td>
+  </tr>
+  <tr>
+    <td>Korosta muutokset</td>
+    <td>
+      <mat-checkbox color="primary" [checked]="this.highlightChanged" (change)="this.onHighlightChanged($event)"
+        labelPosition="before">
+      </mat-checkbox>
+    </td>
+  </tr>
+  <tr>
+    <td>Tekstin koko</td>
+    <td>
+      <mat-icon color="primary-50" (click)="this.decreaseFontSize()">text_decrease</mat-icon>
+      <span class="font-value">{{this.fontSize}}</span>
+      <mat-icon color="primary-50" (click)="this.increaseFontSize()">text_increase</mat-icon>
+    </td>
+  </tr>
+  <tr>
+    <td>Teema</td>
+    <td><mat-select (selectionChange)="this.setTheme($event.value)" color="primary" [(value)]="this.theme">
+      @for (theme of this.themes; track theme) {
+        <mat-option [value]="theme.key">
+          {{theme.displayValue}}
+        </mat-option>
+      }
+    </mat-select></td>
+  </tr>
+</table>
 </div>

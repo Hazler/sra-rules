@@ -1,69 +1,111 @@
-<ng-container *ngFor="let section of this.data.content">
-  <mat-card *ngIf="section.id">
-    <mat-card-header (click)="this.openClose(section)">
-      <mat-card-title>
-        <a *ngIf="section.id && !this.opened[section.id].isExpandable" href="#{{section.id}}" (click)="this.navItemClicked.emit()">
-          {{section.id}} {{section.header}}
-        </a>
-        <div *ngIf="this.opened[section.id].isExpandable">
-          <span>{{section.id}} {{section.header}}</span>
-          <mat-icon *ngIf="!this.opened[section.id].isOpen">expand_more</mat-icon>
-          <mat-icon *ngIf="this.opened[section.id].isOpen">expand_less</mat-icon>
-        </div>
-      </mat-card-title>
-    </mat-card-header>
-    <mat-card-content *ngIf="this.opened[section.id].isOpen">
-      <mat-nav-list *ngIf="section.children">
-        <ng-container *ngFor="let child of section.children">
-          <a *ngIf="child.header" href="#{{child.id}}" mat-list-item
-            (click)="this.navItemClicked.emit();this.openClose(section)">{{child.id}} {{child.header}}</a>
-        </ng-container>
+@for (section of this.data.content; track section) {
+  @if (section.id) {
+    <mat-card>
+      <mat-card-header (click)="this.openClose(section)">
+        <mat-card-title>
+          @if (section.id && !this.opened[section.id].isExpandable) {
+            <a href="#{{section.id}}" (click)="this.navItemClicked.emit()">
+              {{section.id}} {{section.header}}
+            </a>
+          }
+          @if (this.opened[section.id].isExpandable) {
+            <div>
+              <span>{{section.id}} {{section.header}}</span>
+              @if (!this.opened[section.id].isOpen) {
+                <mat-icon>expand_more</mat-icon>
+              }
+              @if (this.opened[section.id].isOpen) {
+                <mat-icon>expand_less</mat-icon>
+              }
+            </div>
+          }
+        </mat-card-title>
+      </mat-card-header>
+      @if (this.opened[section.id].isOpen) {
+        <mat-card-content>
+          @if (section.children) {
+            <mat-nav-list>
+              @for (child of section.children; track child) {
+                @if (child.header) {
+                  <a href="#{{child.id}}" mat-list-item
+                  (click)="this.navItemClicked.emit();this.openClose(section)">{{child.id}} {{child.header}}</a>
+                }
+              }
+            </mat-nav-list>
+          }
+        </mat-card-content>
+      }
+    </mat-card>
+  }
+  @if (!section.id && section.depth && section.href) {
+    <mat-card>
+      <mat-card-header (click)="this.openClose(section)">
+        <mat-card-title>
+          @if (!this.opened[section.href].isExpandable) {
+            <a href="#{{section.href}}" (click)="this.navItemClicked.emit()">
+              {{section.header}}
+            </a>
+          }
+          @if (this.opened[section.href].isExpandable) {
+            <div>
+              <span>{{section.header}}</span>
+              @if (!this.opened[section.href].isOpen) {
+                <mat-icon>expand_more</mat-icon>
+              }
+              @if (this.opened[section.href].isOpen) {
+                <mat-icon>expand_less</mat-icon>
+              }
+            </div>
+          }
+        </mat-card-title>
+      </mat-card-header>
+      @if (this.opened[section.href].isOpen) {
+        <mat-card-content>
+          @if (section.children) {
+            <mat-nav-list>
+              @for (child of section.children; track child) {
+                @if (child.header) {
+                  <a href="#{{child.href}}" mat-list-item
+                  (click)="this.navItemClicked.emit();this.openClose(section)">{{child.header}}</a>
+                }
+              }
+            </mat-nav-list>
+          }
+        </mat-card-content>
+      }
+    </mat-card>
+  }
+}
+
+<ng-container>
+  @if (this.getCommands()?.length > 0) {
+    <mat-expansion-panel #komennot>
+      <mat-expansion-panel-header>KOMENNOT</mat-expansion-panel-header>
+      <mat-nav-list>
+        @for (command of this.getCommands(); track command) {
+          <a href="#{{command.href}}" mat-list-item
+            (click)="this.navItemClicked.emit();komennot.close()">
+            {{command.header}}
+            @if (command.subheader) {
+              <p class="command-subheader">{{command.subheader}}</p>
+            }
+          </a>
+        }
       </mat-nav-list>
-    </mat-card-content>
-  </mat-card>
-  <mat-card *ngIf="!section.id && section.depth && section.href">
-    <mat-card-header (click)="this.openClose(section)">
-      <mat-card-title>
-        <a *ngIf="!this.opened[section.href].isExpandable" href="#{{section.href}}" (click)="this.navItemClicked.emit()">
-          {{section.header}}
-        </a>
-        <div *ngIf="this.opened[section.href].isExpandable">
-          <span>{{section.header}}</span>
-          <mat-icon *ngIf="!this.opened[section.href].isOpen">expand_more</mat-icon>
-          <mat-icon *ngIf="this.opened[section.href].isOpen">expand_less</mat-icon>
-        </div>
-      </mat-card-title>
-    </mat-card-header>
-    <mat-card-content *ngIf="this.opened[section.href].isOpen">
-      <mat-nav-list *ngIf="section.children">
-        <ng-container *ngFor="let child of section.children">
-          <a *ngIf="child.header" href="#{{child.href}}" mat-list-item
-            (click)="this.navItemClicked.emit();this.openClose(section)">{{child.header}}</a>
-        </ng-container>
-      </mat-nav-list>
-    </mat-card-content>
-  </mat-card>
+    </mat-expansion-panel>
+  }
 </ng-container>
 
 <ng-container>
-  <mat-expansion-panel *ngIf="this.getCommands()?.length > 0" #komennot>
-    <mat-expansion-panel-header>KOMENNOT</mat-expansion-panel-header>
-    <mat-nav-list>
-      <a href="#{{command.href}}" mat-list-item *ngFor="let command of this.getCommands()"
-        (click)="this.navItemClicked.emit();komennot.close()">
-        {{command.header}}
-        <p class="command-subheader" *ngIf="command.subheader">{{command.subheader}}</p>
-      </a>
-    </mat-nav-list>
-  </mat-expansion-panel>
-</ng-container>
-
-<ng-container>
-  <mat-expansion-panel *ngIf="this.data.attachments && this.data.attachments.length > 0" #liitteet>
-    <mat-expansion-panel-header>LIITTEET</mat-expansion-panel-header>
-    <mat-nav-list>
-      <a href="#{{attachment.id}}" mat-list-item *ngFor="let attachment of this.data.attachments"
-        (click)="this.navItemClicked.emit();liitteet.close();">{{attachment.header}}</a>
-    </mat-nav-list>
-  </mat-expansion-panel>
+  @if (this.data.attachments && this.data.attachments.length > 0) {
+    <mat-expansion-panel #liitteet>
+      <mat-expansion-panel-header>LIITTEET</mat-expansion-panel-header>
+      <mat-nav-list>
+        @for (attachment of this.data.attachments; track attachment) {
+          <a href="#{{attachment.id}}" mat-list-item
+          (click)="this.navItemClicked.emit();liitteet.close();">{{attachment.header}}</a>
+        }
+      </mat-nav-list>
+    </mat-expansion-panel>
+  }
 </ng-container>
