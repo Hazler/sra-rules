@@ -7,6 +7,11 @@ const config: CapacitorConfig = {
   backgroundColor: '#eee',
   ios: {
     "preferredContentMode": "mobile"
+  },
+  plugins: {
+    SystemBars: {
+      insetsHandling: "disable"
+    }
   }
 };
 
