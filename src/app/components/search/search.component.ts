@@ -1,4 +1,4 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component, ElementRef, ChangeDetectionStrategy } from '@angular/core';
 import { Rules } from 'src/app/model/rules';
 import { SearchResult } from 'src/app/model/search-result';
 import { RulesService } from 'src/app/services/rules.service';
@@ -13,6 +13,7 @@ import { SearchStatus } from '../../model/search-status';
     selector: 'app-search',
     templateUrl: './search.component.html',
     styleUrls: ['./search.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class SearchComponent {

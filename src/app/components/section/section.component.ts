@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input } from '@angular/core';
+import { Component, ElementRef, Input, ChangeDetectionStrategy } from '@angular/core';
 import { SearchService } from 'src/app/services/search.service';
 import { SettingsService } from 'src/app/services/settings.service';
 import { Section } from '../../model/section';
@@ -10,6 +10,7 @@ import { Section } from '../../model/section';
     selector: 'app-section',
     templateUrl: './section.component.html',
     styleUrls: ['./section.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class SectionComponent {

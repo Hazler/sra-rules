@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Rules } from 'src/app/model/rules';
 import { Section } from 'src/app/model/section';
 import { RulesService } from 'src/app/services/rules.service';
@@ -7,6 +7,7 @@ import { RulesService } from 'src/app/services/rules.service';
     selector: 'app-side-navigation',
     templateUrl: './side-navigation.component.html',
     styleUrls: ['./side-navigation.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class SideNavigationComponent {

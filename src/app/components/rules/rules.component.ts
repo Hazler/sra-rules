@@ -1,4 +1,4 @@
-import { AfterContentChecked, Component, ElementRef } from '@angular/core';
+import { AfterContentChecked, Component, ElementRef, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Rules } from 'src/app/model/rules';
 import { SettingsService } from 'src/app/services/settings.service';
@@ -11,6 +11,7 @@ import { RulesService } from '../../services/rules.service';
     selector: 'app-rules',
     templateUrl: './rules.component.html',
     styleUrls: ['./rules.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class RulesComponent implements AfterContentChecked {

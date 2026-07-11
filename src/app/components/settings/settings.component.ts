@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { RulesService } from 'src/app/services/rules.service';
 import { SettingsService } from 'src/app/services/settings.service';
 
@@ -9,6 +9,7 @@ import { SettingsService } from 'src/app/services/settings.service';
     selector: 'app-settings',
     templateUrl: './settings.component.html',
     styleUrls: ['./settings.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class SettingsComponent {

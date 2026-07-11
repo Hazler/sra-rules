@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input } from '@angular/core';
+import { Component, ElementRef, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Attachment } from 'src/app/model/attachment';
 import { Category } from 'src/app/model/category';
 import { SettingsService } from 'src/app/services/settings.service';
@@ -11,6 +11,7 @@ import { WindowService } from '../../services/window.service';
     selector: 'app-attachments',
     templateUrl: './attachments.component.html',
     styleUrls: ['./attachments.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class AttachmentsComponent {

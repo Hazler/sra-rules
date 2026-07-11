@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input } from '@angular/core';
+import { Component, ElementRef, Input, ChangeDetectionStrategy } from '@angular/core';
 import { SectionList } from 'src/app/model/list';
 import { SearchService } from 'src/app/services/search.service';
 import { SettingsService } from 'src/app/services/settings.service';
@@ -7,6 +7,7 @@ import { SettingsService } from 'src/app/services/settings.service';
   selector: 'app-section-list',
   templateUrl: './section-list.component.html',
   styleUrl: './section-list.component.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class SectionListComponent {
