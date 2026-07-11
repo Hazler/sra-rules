@@ -1,7 +1,7 @@
 import { AfterContentChecked, Component, ElementRef, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Rules } from 'src/app/model/rules';
-import { SettingsService } from 'src/app/services/settings.service';
+import { Rules } from '../../../app/model/rules';
+import { SettingsService } from '../../../app/services/settings.service';
 import { RulesService } from '../../services/rules.service';
 
 /**

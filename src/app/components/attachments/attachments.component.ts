@@ -1,7 +1,7 @@
 import { Component, ElementRef, Input, ChangeDetectionStrategy } from '@angular/core';
-import { Attachment } from 'src/app/model/attachment';
-import { Category } from 'src/app/model/category';
-import { SettingsService } from 'src/app/services/settings.service';
+import { Attachment } from '../../../app/model/attachment';
+import { Category } from '../../../app/model/category';
+import { SettingsService } from '../../../app/services/settings.service';
 import { WindowService } from '../../services/window.service';
 
 /**

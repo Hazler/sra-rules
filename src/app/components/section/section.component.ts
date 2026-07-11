@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, ChangeDetectionStrategy } from '@angular/core';
-import { SearchService } from 'src/app/services/search.service';
-import { SettingsService } from 'src/app/services/settings.service';
+import { SearchService } from '../../../app/services/search.service';
+import { SettingsService } from '../../../app/services/settings.service';
 import { Section } from '../../model/section';
 
 /**

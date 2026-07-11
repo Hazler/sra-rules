@@ -1,7 +1,7 @@
 import { Component, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
-import { Rules } from 'src/app/model/rules';
-import { Section } from 'src/app/model/section';
-import { RulesService } from 'src/app/services/rules.service';
+import { Rules } from '../../../app/model/rules';
+import { Section } from '../../../app/model/section';
+import { RulesService } from '../../../app/services/rules.service';
 
 @Component({
     selector: 'app-side-navigation',

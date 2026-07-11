@@ -1,9 +1,9 @@
 import { Component, ElementRef, ChangeDetectionStrategy } from '@angular/core';
-import { Rules } from 'src/app/model/rules';
-import { SearchResult } from 'src/app/model/search-result';
-import { RulesService } from 'src/app/services/rules.service';
-import { SearchService } from 'src/app/services/search.service';
-import { SettingsService } from 'src/app/services/settings.service';
+import { Rules } from '../../../app/model/rules';
+import { SearchResult } from '../../../app/model/search-result';
+import { RulesService } from '../../../app/services/rules.service';
+import { SearchService } from '../../../app/services/search.service';
+import { SettingsService } from '../../../app/services/settings.service';
 import { SearchStatus } from '../../model/search-status';
 
 /**

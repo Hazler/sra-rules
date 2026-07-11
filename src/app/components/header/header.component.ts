@@ -1,9 +1,9 @@
 import { Component, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Rules } from 'src/app/model/rules';
-import { SearchStatus } from 'src/app/model/search-status';
-import { RulesService } from 'src/app/services/rules.service';
-import { SearchService } from 'src/app/services/search.service';
+import { Rules } from '../../../app/model/rules';
+import { SearchStatus } from '../../../app/model/search-status';
+import { RulesService } from '../../../app/services/rules.service';
+import { SearchService } from '../../../app/services/search.service';
 import { SearchComponent } from '../search/search.component';
 
 /**

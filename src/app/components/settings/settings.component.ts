@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { RulesService } from 'src/app/services/rules.service';
-import { SettingsService } from 'src/app/services/settings.service';
+import { RulesService } from '../../../app/services/rules.service';
+import { SettingsService } from '../../../app/services/settings.service';
 
 /**
  * Component for modifying application settings

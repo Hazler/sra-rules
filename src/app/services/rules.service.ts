@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { SRAmatchguide } from 'src/data/sra-kilpailujen-jarjestamisohje';
-import { SRArules80 } from 'src/data/sra-saannot-8.0';
-import { SRArules81 } from 'src/data/sra-saannot-8.1';
+import { SRAmatchguide } from '../../data/sra-kilpailujen-jarjestamisohje';
+import { SRArules80 } from '../../data/sra-saannot-8.0';
+import { SRArules81 } from '../../data/sra-saannot-8.1';
 
 /**
  * Service for rules related functionalities

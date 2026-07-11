@@ -1,7 +1,7 @@
 import { Component, ElementRef, Input, ChangeDetectionStrategy } from '@angular/core';
-import { SectionList } from 'src/app/model/list';
-import { SearchService } from 'src/app/services/search.service';
-import { SettingsService } from 'src/app/services/settings.service';
+import { SectionList } from '../../../app/model/list';
+import { SearchService } from '../../../app/services/search.service';
+import { SettingsService } from '../../../app/services/settings.service';
 
 @Component({
   selector: 'app-section-list',
